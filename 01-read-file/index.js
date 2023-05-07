@@ -1,8 +1,15 @@
-const fs = require('fs');
-const path = require('path');
+const { createReadStream } = require('fs');
+const {join} = require('path');
+const { pipeline } = require('stream/promises');
 const {stdout} = process;
 
-const pathToFile = path.join(__dirname, 'text.txt');
+const pathToFile = join(__dirname, 'text.txt');
 
-const stream = fs.createReadStream(pathToFile);
-stream.pipe(stdout);
+(async () => {
+  try {
+    const stream = createReadStream(pathToFile);
+    await pipeline(stream, stdout);
+  } catch (err) {
+    console.log(err.message);
+  }
+})();
