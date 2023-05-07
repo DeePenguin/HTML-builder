@@ -8,6 +8,10 @@ module.exports = {
   'parserOptions': {
     'ecmaVersion': 12
   },
+  'ignorePatterns': [
+    'node_modules/',
+    '*/secret-folder/*'
+  ],
   'rules': {
     'indent': [
       'error',
