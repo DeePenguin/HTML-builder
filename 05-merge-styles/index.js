@@ -5,10 +5,11 @@ const { pipeline } = require('stream/promises');
 
 const destination = join(__dirname, 'project-dist', 'bundle.css');
 const sourceDir = join(__dirname, 'styles');
+const cssExtension = '.css';
 
 function isCssFile(source, file) {
   const pathToFile = join(source, file.name);
-  return file.isFile() && parse(pathToFile).ext === '.css';
+  return file.isFile() && parse(pathToFile).ext === cssExtension;
 }
 
 async function createCssBundle(source, destination) {
